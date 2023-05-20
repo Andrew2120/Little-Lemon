@@ -1,4 +1,4 @@
-package com.example.littlelemon.presentation.ui.theme
+package com.example.littlelemon.ui.theme
 
 import android.app.Activity
 import android.os.Build

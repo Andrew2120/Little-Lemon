@@ -1,13 +1,16 @@
-package com.example.littlelemon.presentation.pages.profile
+package com.example.littlelemon.pages.profile
 
 import android.content.SharedPreferences
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.littlelemon.R
-import com.example.littlelemon.domain.entities.User
+import com.example.littlelemon.User
 import com.google.gson.Gson
 
 @Composable
@@ -36,7 +39,6 @@ fun ProfileScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Logo()
-
         UserData(user, onLogout)
     }
 }
@@ -44,56 +46,55 @@ fun ProfileScreen(
 
 @Composable
 fun Logo() {
+
     Image(
         painter = painterResource(id = R.drawable.logo),
         contentDescription = "Logo",
         modifier = Modifier
-            .size(100.dp)
+            .size(150.dp)
             .padding(bottom = 16.dp)
     )
 }
 
 @Composable
 fun UserData(
-    user: User,
+    user: User?,
     onLogout: () -> Unit
 ) {
 
-    Text(
-        text = stringResource(id = R.string.personal_information),
-        style = MaterialTheme.typography.titleLarge,
-        modifier = Modifier.padding(bottom = 32.dp)
-    )
+    Column(Modifier.padding(16.dp)) {
+        DataFiled(stringResource(id = R.string.first_name), user?.firstName ?: "")
+        DataFiled(stringResource(id = R.string.last_name), user?.lastName ?: "")
+        DataFiled(stringResource(id = R.string.email), user?.email ?: "")
 
 
-    Text(
-        user.firstName,
-        Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-    )
-    Text(
-        user.lastName,
-        Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-    )
-    Text(
-        user.email,
-        Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-    )
-
-
-    Button(
-        onClick = {
-            onLogout()
-        },
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text(text = stringResource(R.string.logout))
+        Button(
+            onClick = {
+                onLogout()
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = stringResource(R.string.logout))
+        }
     }
 }
 
 
+@Composable
+fun DataFiled(key: String, value: String) {
+    Text(
+        key,
+        Modifier
+            .padding(4.dp)
+            .fillMaxWidth()
+    )
+    Text(
+        value,
+        Modifier
+            .padding(4.dp)
+            .fillMaxWidth()
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Divider()
+    Spacer(modifier = Modifier.height(8.dp))
+}

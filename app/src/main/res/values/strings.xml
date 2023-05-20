@@ -9,4 +9,8 @@
     <string name="registration_unsuccessful_please_enter_all_data">Registration unsuccessful. Please enter all data.</string>
     <string name="ok">Ok\n</string>
     <string name="logout">Logout</string>
+    <string name="hero_section_description">We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist</string>
+    <string name="chicago">Chicago</string>
+    <string name="enter_search_phrase">Enter Search Phrase</string>
+    <string name="name">Name</string>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.littlelemon
 
 import android.content.SharedPreferences
-import android.service.autofill.UserData
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -9,19 +8,19 @@ import androidx.navigation.compose.composable
 import com.example.littlelemon.MyDestinations.home
 import com.example.littlelemon.MyDestinations.onboarding
 import com.example.littlelemon.MyDestinations.profile
-import com.example.littlelemon.domain.entities.User
-import com.example.littlelemon.presentation.pages.home.HomeScreen
-import com.example.littlelemon.presentation.pages.onboarding.OnBoardingScreen
-import com.example.littlelemon.presentation.pages.profile.ProfileScreen
+import com.example.littlelemon.pages.home.HomeScreen
+import com.example.littlelemon.pages.onboarding.OnBoardingScreen
+import com.example.littlelemon.pages.profile.ProfileScreen
 import com.google.gson.Gson
 
 
 @Composable
 fun MyNavigation(
     navController: NavHostController,
-    sharedPreferences: SharedPreferences
+    sharedPreferences: SharedPreferences,
+    db: AppDatabase
 ) {
-    val gson: Gson = Gson()
+    val gson = Gson()
     val userDataJson = sharedPreferences.getString("User", null)
     val user = gson.fromJson(userDataJson, User::class.java)
 
@@ -38,10 +37,21 @@ fun MyNavigation(
             }
         }
         composable(route = home) {
-            HomeScreen()
+            HomeScreen(db) {
+                navController.navigate(profile)
+            }
         }
         composable(route = profile) {
-            ProfileScreen(sharedPreferences, {})
+            ProfileScreen(sharedPreferences) {
+                sharedPreferences.edit().clear().apply()
+                navController.navigate(onboarding) {
+                    popUpTo(profile) {
+                        inclusive = true
+                    }
+                }
+
+
+            }
         }
     }
 }

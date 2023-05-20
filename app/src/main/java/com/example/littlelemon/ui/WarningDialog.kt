@@ -1,4 +1,4 @@
-package com.example.littlelemon.presentation.ui
+package com.example.littlelemon.ui
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

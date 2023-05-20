@@ -1,4 +1,4 @@
-package com.example.littlelemon.presentation.pages.onboarding
+package com.example.littlelemon.pages.onboarding
 
 import android.content.SharedPreferences
 import androidx.compose.foundation.Image
@@ -25,8 +25,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.littlelemon.R
-import com.example.littlelemon.domain.entities.User
-import com.example.littlelemon.presentation.ui.WarningDialog
+import com.example.littlelemon.User
+import com.example.littlelemon.ui.WarningDialog
 import com.google.gson.Gson
 
 @Composable
