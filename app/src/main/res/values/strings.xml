@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Little Lemon</string>
+    <string name="let_s_get_to_know_you">Let\'s get to know you</string>
+    <string name="personal_information">Personal information</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="register">Register</string>
+    <string name="registration_unsuccessful_please_enter_all_data">Registration unsuccessful. Please enter all data.</string>
+    <string name="ok">Ok\n</string>
+    <string name="logout">Logout</string>
 </resources>
